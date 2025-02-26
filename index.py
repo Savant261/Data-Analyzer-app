@@ -131,6 +131,7 @@ if(file!=None):
         ax.set_ylabel(y_axis)
         ax.set_title(f'{y_axis} by {x_axis} (Line Chart)')
         ax.legend()
+        plt.xticks(rotation=90)
         st.pyplot(fig)
 
     elif graphs == 'bar':
@@ -141,6 +142,7 @@ if(file!=None):
         ax.set_xlabel(x_axis)
         ax.set_ylabel(y_axis)
         ax.set_title(f'{y_axis} by {x_axis} (Bar Chart)')
+        plt.xticks(rotation=90)
         st.pyplot(fig)
 
     elif graphs == 'scatter':
@@ -150,6 +152,7 @@ if(file!=None):
         ax.set_xlabel(x_axis)
         ax.set_ylabel(y_axis)
         ax.set_title(f'{y_axis} by {x_axis} (Scatter Plot)')
+        plt.xticks(rotation=90)
         st.pyplot(fig)
 
     
