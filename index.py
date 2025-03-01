@@ -7,7 +7,7 @@ st.set_page_config(
     page_icon='📊'
 )
 
-st.title(':rainbow[Data Analytics Portal]')
+st.title(':red[Data Analytics Portal]')
 st.subheader(':gray[Explore Data with ease.]', divider = 'rainbow')
 
 file = st.file_uploader('Drop csv or excel file', type = ['csv','xlsx'])
