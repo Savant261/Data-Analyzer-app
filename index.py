@@ -1,5 +1,5 @@
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 import streamlit as st
 
 st.set_page_config(
@@ -7,7 +7,7 @@ st.set_page_config(
     page_icon='📊'
 )
 
-st.title(':red[Data Analytics Portal]')
+st.title(':rainbow[Data Analytics Portal]')
 st.subheader(':gray[Explore Data with ease.]', divider = 'rainbow')
 
 file = st.file_uploader('Drop csv or excel file', type = ['csv','xlsx'])
@@ -54,47 +54,14 @@ if(file!=None):
             # result.columns = [column, 'count']
             st.dataframe(result)
             st.subheader('Visualization: ', divider='gray')
-            fig, ax = plt.subplots()
-            ax.bar(result[column],result['count'],color='lightblue',edgecolor='black')
-            ax.set_xlabel(column, fontsize=12)
-            ax.set_ylabel('Count', fontsize=12)
-            ax.set_title(f'Top {toprows} counts of {column}',fontsize=15)
-            plt.xticks(rotation=90)
+            fig = px.bar(data_frame=result, x=column, y='count',text='count',template='plotly_white')
+            st.plotly_chart(fig)
 
-            ax.set_facecolor('black')
-            fig.patch.set_facecolor('black')
-            ax.spines['top'].set_visible(False)
-            ax.spines['right'].set_visible(False)
-            ax.spines['left'].set_color('white')
-            ax.spines['bottom'].set_color('white')
-            ax.tick_params(axis='x', colors='white')
-            ax.tick_params(axis='y', colors='white')
-            ax.yaxis.label.set_color('white')
-            ax.xaxis.label.set_color('white')
-            ax.title.set_color('white') 
-            st.pyplot(fig)
+            fig = px.line(data_frame=result, x=column, y='count', text='count',template='plotly_white')
+            st.plotly_chart(fig)
 
-            #line plot  
-            fig1, ax1 = plt.subplots()
-            ax.plot(result[column],result['count'],color='white',marker='o',ls='-',lw=2)
-            ax.set_xlabel(column, fontsize=12)
-            ax.set_ylabel('Count', fontsize=12)
-            ax.set_title(f'Line Chart of {column}', fontsize=15)
-            plt.xticks(rotation=0)
-
-            ax.set_facecolor('black')  # Dark background for the plot
-            fig.patch.set_facecolor('black')  # Dark background for the figure
-            ax.spines['top'].set_visible(False)
-            ax.spines['right'].set_visible(False)
-            ax.spines['left'].set_color('white')
-            ax.spines['bottom'].set_color('white')
-            ax.tick_params(axis='x', colors='white')
-            ax.tick_params(axis='y', colors='white')
-            ax.yaxis.label.set_color('white')
-            ax.xaxis.label.set_color('white')
-            ax.title.set_color('white')
-
-            st.pyplot(fig)
+            fig = px.pie(data_frame=result,names=column, values='count')
+            st.plotly_chart(fig)
 
     st.subheader(':rainbow[Groupby : Simplify your data analysis]', divider='rainbow')
     st.write('The groupby lets you summarize data by specific categories and groups')
@@ -118,42 +85,38 @@ if(file!=None):
     st.subheader(':gray[Data Visualization]', divider='gray')
     graphs = st.selectbox('Choose your graphs', options=['line', 'bar', 'scatter', 'pie', 'sunburst'])
             
-            
-    if graphs == 'line' or graphs == 'bar' or graphs == 'scatter':
-        x_axis = st.selectbox('Choose X axis', options=list(result.columns))
-        y_axis = st.selectbox('Choose Y axis', options=list(result.columns))
-        color = st.selectbox('Color Information', options=[None] + list(result.columns))
-
     if graphs == 'line':
-        fig, ax = plt.subplots()
-        ax.plot(result[x_axis], result[y_axis], marker='o', label=f'{x_axis} vs {y_axis}', color='blue')
-        ax.set_xlabel(x_axis)
-        ax.set_ylabel(y_axis)
-        ax.set_title(f'{y_axis} by {x_axis} (Line Chart)')
-        ax.legend()
-        plt.xticks(rotation=90)
-        st.pyplot(fig)
+            x_axis = st.selectbox('Choose X axis', options=list(result.columns))
+            y_axis = st.selectbox('Choose Y axis', options=list(result.columns))
+            color = st.selectbox('Color Information', options=[None] + list(result.columns))
+            fig = px.line(data_frame=result, x=x_axis, y=y_axis, color=color, markers='o')
+            st.plotly_chart(fig)        
 
     elif graphs == 'bar':
-        fig, ax = plt.subplots()
-        ax.bar(result[x_axis], result[y_axis], color='skyblue')
-        # for i, v in enumerate(result[y_axis]):
-        #     ax.text(i, v + 0.2, str(v), ha='center')  # Adding count text
-        ax.set_xlabel(x_axis)
-        ax.set_ylabel(y_axis)
-        ax.set_title(f'{y_axis} by {x_axis} (Bar Chart)')
-        plt.xticks(rotation=90)
-        st.pyplot(fig)
+            x_axis = st.selectbox('Choose X axis', options=list(result.columns))
+            y_axis = st.selectbox('Choose Y axis', options=list(result.columns))
+            color = st.selectbox('Color Information', options=[None] + list(result.columns))
+            facet_col = st.selectbox('Column Information', options=[None] + list(result.columns))
+            fig = px.bar(data_frame=result, x=x_axis, y=y_axis, color=color, facet_col=facet_col, barmode='group')
+            st.plotly_chart(fig)
+    
 
     elif graphs == 'scatter':
-        fig, ax = plt.subplots()
-        size = st.selectbox('Size Column', options=[None] + list(result.columns))
-        ax.scatter(result[x_axis], result[y_axis], c='blue', s=result[size] * 10 if size else 50)
-        ax.set_xlabel(x_axis)
-        ax.set_ylabel(y_axis)
-        ax.set_title(f'{y_axis} by {x_axis} (Scatter Plot)')
-        plt.xticks(rotation=90)
-        st.pyplot(fig)
+            x_axis = st.selectbox('Choose X axis', options=list(result.columns))
+            y_axis = st.selectbox('Choose Y axis', options=list(result.columns))
+            color = st.selectbox('Color Information', options=[None] + list(result.columns))
+            size = st.selectbox('Size Column', options=[None] + list(result.columns))
+            fig = px.scatter(data_frame=result, x=x_axis, y=y_axis, color=color, size=size)
+            st.plotly_chart(fig)
+    elif graphs == 'pie':
+            values = st.selectbox('Choose Numerical Values', options=list(result.columns))
+            names = st.selectbox('Choose labels', options=list(result.columns))
+            fig = px.pie(data_frame=result, values=values, names=names)
+            st.plotly_chart(fig)
+    elif graphs == 'sunburst':
+            path = st.multiselect('Choose your Path', options=list(result.columns))
+            fig = px.sunburst(data_frame=result, path=path, values='newcol')
+            st.plotly_chart(fig)
 
     
 
