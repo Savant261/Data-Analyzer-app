@@ -161,7 +161,12 @@ if(file!=None):
             fig = px.sunburst(data_frame=result, path=path, values='newcol')
             st.plotly_chart(fig)
 
+    
 #INCONSISTENCY CHECKING USING HEATMAPS AND BOXPLOTS
+
+#WILL WORK ONLY ON DATASETS WITH NUMERIC DATATYPES
+
+    
 
     st.header(':rainbow[Inconsistency Checker]', divider='rainbow')
     
