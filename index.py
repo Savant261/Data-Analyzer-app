@@ -167,7 +167,7 @@ if(file!=None):
 #WILL WORK ONLY ON DATASETS WITH NUMERIC DATATYPES
 
     
-
+    st.header(':red[WORKS WITH DATASETS CONTAINING NUMERIC COLUMNS ONLY]', divider='gray')
     st.header(':rainbow[Inconsistency Checker]', divider='rainbow')
     
 
