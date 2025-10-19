@@ -1,6 +1,6 @@
 # 📈 Interactive Data Analyzer App
 
-Welcome to the Interactive Data Analyzer\! This is a powerful web application built with **Streamlit** that allows you to upload, clean, filter, and visualize your datasets—all without writing a single line of code.
+Welcome to the Interactive Data Analyzer\! This is a powerful web application built with **Streamlit** that allows you to upload, clean, filter, group, and visualize your datasets—all without writing a single line of code.
 
 This tool is perfect for data analysts, students, and anyone curious to find insights in their data quickly.
 
@@ -8,11 +8,13 @@ This tool is perfect for data analysts, students, and anyone curious to find ins
 
 ## 🚀 What My App Does
 
-This application transforms your raw data files (CSV or Excel) into an interactive dashboard. You can:
+This application transforms your raw `.csv` data files into an interactive analysis dashboard. You can:
 
   * **Upload** your dataset.
   * Instantly **preview** the data and see a statistical summary.
   * Apply multiple **dynamic filters** across your data.
+  * **Group and aggregate** your data by specific columns.
+  * Find **correlations** and **detect outliers** automatically.
   * Create beautiful, interactive **visualizations** with Plotly.
   * **Download** your newly filtered data for further use.
 
@@ -20,12 +22,12 @@ This application transforms your raw data files (CSV or Excel) into an interacti
 
 ## 🎯 Key Features
 
-Based on the `index.py` file, this app is packed with the following features:
+This app is packed with the following features to make data analysis fast and easy:
 
-### 1\. 📁 Flexible Data Upload
+### 1\. 📁 CSV Data Upload
 
-  * **CSV and Excel Support:** Easily upload your data in either `.csv` or `.xlsx` format.
-  * **Robust Reading:** The app correctly handles different file types, using `pandas` for CSVs and `openpyxl` for Excel files.
+  * **Easy Upload:** Quickly upload your data in `.csv` format using the simple file uploader.
+  * **Robust Reading:** The app uses `pandas` to efficiently read and process your data.
 
 ### 2\. 📋 Instant Data Overview
 
@@ -35,13 +37,24 @@ Based on the `index.py` file, this app is packed with the following features:
 
 ### 3\. 🔍 Powerful Dynamic Filtering
 
-This is the core of the app\! All filters are neatly organized in the sidebar and update the data in real-time.
+All filters are neatly organized in the sidebar and update the data in real-time.
 
   * **Categorical Filtering:** Automatically finds all text/category columns and lets you `multi-select` which values to include.
   * **Numerical Filtering:** Automatically finds all number columns and provides an interactive `slider` to select a min/max range.
   * **Date Filtering:** Automatically detects date columns and provides a `date range` selector.
 
-### 4\. 🎨 Interactive Visualizations
+### 4\. 📊 Dynamic GroupBy Analysis
+
+  * **Flexible Aggregation:** Instantly group your data by one or more columns (e.g., 'Region', 'Product Type').
+  * **Summarize Data:** Perform common aggregations like `sum`, `mean`, `count`, or `median` on numerical columns to get summary statistics for each group.
+  * **Visualize Groups:** Directly plot the results of your `groupby` operation using Bar, Line, or Pie charts to compare groups easily.
+
+### 5\. 🧠 Advanced Data Analysis
+
+  * **🔥 Heatmap Correlation:** Automatically generates a `seaborn` correlation matrix to show how different numerical variables relate to each other.
+  * **👀 Outlier Detection:** Uses the **Interquartile Range (IQR)** method to automatically identify and visualize outliers in any numerical column you select.
+
+### 6\. 🎨 Interactive Visualizations
 
 Create custom, publication-ready charts using **Plotly Express**.
 
@@ -54,19 +67,18 @@ Create custom, publication-ready charts using **Plotly Express**.
   * **Dynamic Axis Selection:** You choose what goes on the X-axis, Y-axis, and even the Color dimension.
   * **Filtered Plots:** All visualizations automatically update based on the filters you've applied.
 
-### 5\. 📥 Data Export
+### 7\. 📥 Data Export
 
-  * **Download Original Data:** Get a copy of your uploaded file in `.xlsx` format.
-  * **Download Filtered Data:** After cleaning and filtering, you can download the *resulting dataset* as a new Excel file, ready for your reports.
+  * **Download Filtered Data:** After cleaning, filtering, and grouping, you can download the *resulting dataset* as a new `.csv` file, ready for your reports.
 
 -----
 
 ## 💻 Tech Stack
 
   * **Streamlit:** For the core web application and interactive widgets.
-  * **Pandas:** For all data manipulation and analysis.
+  * **Pandas:** For all data manipulation, aggregation, and analysis.
   * **Plotly Express:** For creating rich, interactive visualizations.
-  * **Openpyxl:** To provide support for reading and writing Excel files.
+  * **Seaborn:** For generating the beautiful correlation heatmap.
 
 -----
 
