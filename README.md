@@ -2,6 +2,8 @@
 
 Welcome to the Interactive Data Analyzer\! This is a powerful web application built with **Streamlit** that allows you to upload, clean, filter, group, and visualize your datasets—all without writing a single line of code.
 
+[**» View Live Demo**](https://data-analyzer-app-b5g8hci3xltt9cna9dgi85.streamlit.app/) 
+
 This tool is perfect for data analysts, students, and anyone curious to find insights in their data quickly.
 
 -----
