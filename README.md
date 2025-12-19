@@ -6,7 +6,6 @@ Welcome to the Interactive Data Analyzer\! This is a powerful web application bu
 
 This tool is perfect for data analysts, students, and anyone curious to find insights in their data quickly.
 
------
 
 ## 🚀 What My App Does
 
